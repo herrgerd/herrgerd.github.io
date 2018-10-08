@@ -12,6 +12,12 @@
 	<script src="dygraph.js"></script>
 	<link rel="stylesheet" type="text/css" href="dygraph.css" />
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<style>
+		#legendeContainer {
+			margin: 0 auto;
+			width: 90%;
+		}
+	</style>
 </head>
 
 <body>
@@ -52,14 +58,13 @@
 
 function initGraph() {
 	var graphContainer = document.getElementsByClassName('graphContainer')[0];
-	var graphContainerWidth = graphContainer.clientWidth;
 	var legendeDiv = document.getElementById('legendeDiv');
 
 	var graph = new Dygraph(document.getElementById("graphDiv"),
 		"Complete_Data.csv", {
 			colors: ['#388e3c', '#607d8b', '#ff5722', '#ffc107 ', '#5c6bc0'],
 			visibility: [true, true, true, true, true, true],
-			width: graphContainerWidth,
+			width: graphContainer.clientWidth,
 			axisLabelFontSize: 12,
 			title: 'T and RH in a nuc bee hive',
 			titleHeight: 20,
@@ -75,8 +80,7 @@ function initGraph() {
 	);
 
 	window.addEventListener('resize', function() {
-		graphContainerWidth = document.getElementsByClassName('graphContainer')[0].clientWidth;
-		graph.resize(graphContainerWidth, 320);
+		graph.resize(graphContainer.clientWidth, 320);
 	})
 }
 
